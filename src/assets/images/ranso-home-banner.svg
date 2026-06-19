@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" role="img" aria-label="RanSo">
+  <defs>
+    <linearGradient id="ranso-banner-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+    <linearGradient id="ranso-banner-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="240" rx="24" fill="url(#ranso-banner-bg)"/>
+  <rect width="800" height="240" rx="24" fill="url(#ranso-banner-glow)"/>
+  <rect x="48" y="80" width="80" height="80" rx="20" fill="#fff" fill-opacity="0.12"/>
+  <path d="M68 132V108h18c8 0 13 4.5 13 11.5S94 131 86 131H78l6 9h-8l-8-12h6v4zm8-16h9c3 0 5-1.5 5-4s-2-4-5-4h-9v8z" fill="#fff"/>
+  <text x="148" y="138" font-family="Inter,Segoe UI,Roboto,sans-serif" font-size="56" font-weight="700" fill="#fff">RanSo</text>
+  <text x="148" y="178" font-family="Inter,Segoe UI,Roboto,sans-serif" font-size="20" font-weight="400" fill="#cbd5e1">Financial platform</text>
+</svg>

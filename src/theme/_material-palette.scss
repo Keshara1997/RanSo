@@ -1,0 +1,55 @@
+/**
+ * Copyright since 2025 Mifos Initiative
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/* ############ Light mode palettes ################ */
+
+$primary-palette: (
+  100: #dbeafe,
+  500: #2563eb,
+  700: #1d4ed8,
+  contrast: (
+    100: rgb(0 0 0 / 87%),
+    500: white,
+    700: white
+  )
+);
+
+$accent-palette: (
+  100: #ccfbf1,
+  500: #14b8a6,
+  700: #0f766e,
+  contrast: (
+    100: rgb(0 0 0 / 87%),
+    500: white,
+    700: white
+  )
+);
+
+/* ############ Dark mode palettes ################ */
+
+$dark-primary-palette: (
+  100: #93c5fd,
+  500: #3b82f6,
+  700: #2563eb,
+  contrast: (
+    100: white,
+    500: rgb(255 255 255 / 87%),
+    700: rgb(255 255 255 / 87%)
+  )
+);
+
+$dark-accent-palette: (
+  100: #99f6e4,
+  500: #2dd4bf,
+  700: #14b8a6,
+  contrast: (
+    100: white,
+    500: white,
+    700: white
+  )
+);

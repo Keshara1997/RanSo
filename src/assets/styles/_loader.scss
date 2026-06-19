@@ -1,0 +1,33 @@
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #0f172a;
+}
+
+.ranso-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ranso-pulse 1.6s ease-in-out infinite;
+}
+
+.ranso-loader-icon {
+  width: 72px;
+  height: 72px;
+}
+
+@keyframes ranso-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

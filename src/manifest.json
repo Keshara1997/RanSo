@@ -1,0 +1,17 @@
+{
+  "short_name": "RanSo",
+  "name": "RanSo",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a",
+  "display": "standalone",
+  "description": "RanSo — modern financial platform for lending, savings, and portfolio management.",
+  "icons": [
+    {
+      "src": "assets/images/ranso-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

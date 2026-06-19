@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Recurring Deposit">
+  <rect width="96" height="96" rx="16" fill="#0f172a"/>
+  <rect x="22" y="26" width="52" height="44" rx="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+  <path d="M30 42h36M30 52h28M30 62h20" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="68" cy="62" r="8" fill="#14b8a6"/>
+  <path d="M65 62l2 2 5-5" stroke="#0f172a" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

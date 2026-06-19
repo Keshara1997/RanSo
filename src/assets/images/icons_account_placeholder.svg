@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <g id="LOAN_ACCOUNT">
+    <rect width="200" height="200" rx="24" fill="#0f172a"/>
+    <circle cx="100" cy="88" r="36" fill="#1e293b" stroke="#3b82f6" stroke-width="3"/>
+    <text x="100" y="98" text-anchor="middle" font-family="Inter,Segoe UI,Roboto,sans-serif" font-size="28" font-weight="700" fill="#3b82f6">$</text>
+    <path d="M48 152h104" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
+    <path d="M64 168h72" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

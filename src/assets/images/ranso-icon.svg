@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="RanSo">
+  <defs>
+    <linearGradient id="ranso-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#14B8A6"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#ranso-grad)"/>
+  <path d="M18 44V20h14.5c6.1 0 10 3.4 10 8.8 0 4.2-2.4 7.2-6.2 8.2L44 44h-7.2l-6.8-9.8H25.2V44H18zm7.2-16.2h6.8c2.8 0 4.4-1.4 4.4-3.6S34.8 20.4 32 20.4h-6.8v7.4z" fill="#fff"/>
+</svg>
