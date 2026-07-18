@@ -1,5 +1,3 @@
-version: '3.5'
-
 services:
   ranso:
     build:
@@ -14,9 +12,15 @@ services:
         - PUPPETEER_CHROMIUM_REVISION_ARG=1011831
     ports:
       - '4200:80'
+    volumes:
+      # Mount nginx template so /fineract-provider is proxied to Fineract
+      - ./nginx.conf.template:/etc/nginx/templates/default.conf.template:ro
     environment:
-      - FINERACT_API_URLS=https://52.207.60.240:8443/:8443
-      - FINERACT_API_URL=https://52.207.60.240:8443
+      # Upstream used only by nginx (browser never talks to this host directly)
+      - FINERACT_PROXY_TARGET=https://52.207.60.240:8443
+      # Empty so Angular uses same-origin (http://localhost:4200) → nginx proxy
+      - FINERACT_API_URL=
+      - FINERACT_API_URLS=
       - FINERACT_API_PROVIDER=/fineract-provider/api
       - FINERACT_API_VERSION=/v1
       - FINERACT_PLATFORM_TENANT_IDENTIFIER=default
@@ -25,3 +29,20 @@ services:
       - MIFOS_SESSION_IDLE_TIMEOUT=300000
       - MIFOS_PRELOAD_CLIENTS=true
       - MIFOS_DEFAULT_CHAR_DELIMITER=,
+      # Placeholders for optional proxies in nginx.conf.template
+      - EXTERNAL_NATIONALID_API_URL=
+      - EXTERNAL_NATIONAL_ID_SYSTEM_API_HEADER=X-Gravitee-Api-Key
+      - EXTERNAL_NATIONAL_ID_SYSTEM_API_KEY=
+      - MIFOS_REMITTANCE_API_URL=
+      - MIFOS_REMITTANCE_API_HEADER=X-Gravitee-Api-Key
+      - MIFOS_REMITTANCE_API_KEY=
+    # Dockerfile CMD starts with /bin/sh, so the nginx image skips template
+    # processing. Process the nginx + env.js templates explicitly (same as e2e).
+    command: >-
+      /bin/sh -c "
+      envsubst '$$FINERACT_PROXY_TARGET $$EXTERNAL_NATIONALID_API_URL $$EXTERNAL_NATIONAL_ID_SYSTEM_API_HEADER $$EXTERNAL_NATIONAL_ID_SYSTEM_API_KEY $$MIFOS_REMITTANCE_API_URL $$MIFOS_REMITTANCE_API_HEADER $$MIFOS_REMITTANCE_API_KEY'
+      < /etc/nginx/templates/default.conf.template
+      > /etc/nginx/conf.d/default.conf &&
+      envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js &&
+      nginx -g 'daemon off;'
+      "

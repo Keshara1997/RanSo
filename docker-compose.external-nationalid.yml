@@ -10,10 +10,8 @@
 # - Rate limiting (2 req/s per IP, burst=5) to protect upstream API
 # - Path rewriting for /external-nationalid → upstream API
 
-version: '3.5'
-
 services:
-  mifosx-web-app:
+  ranso:
     volumes:
       - ./nginx.conf.template:/etc/nginx/templates/default.conf.template:ro
     environment:
