@@ -60,7 +60,7 @@ export class ServerSelectorComponent implements OnInit {
     if (!this.existMoreThanOneServer) {
       this.settingsService.setServer(this.servers[0]);
     } else {
-      this.existMoreThanOneServer = true;
+      this.existMoreThanOneServer = false;
       this.serverSelector.patchValue(this.settingsService.server);
       this.form = this.formBuilder.group({
         url: [

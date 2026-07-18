@@ -47,7 +47,6 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { SearchToolComponent } from '../../../shared/search-tool/search-tool.component';
-import { LanguageSelectorComponent } from '../../../shared/language-selector/language-selector.component';
 import { MatIcon } from '@angular/material/icon';
 import { NotificationsTrayComponent as NotificationsTrayComponent_1 } from '../../../shared/notifications-tray/notifications-tray.component';
 import { ThemeToggleComponent } from '../../../shared/theme-toggle/theme-toggle.component';
@@ -69,7 +68,6 @@ import { DocumentationLinksService } from 'app/shared/services/documentation-lin
     FaIconComponent,
     MatMenuTrigger,
     SearchToolComponent,
-    LanguageSelectorComponent,
     MatIcon,
     NotificationsTrayComponent_1,
     ThemeToggleComponent,

@@ -16,7 +16,7 @@
 module.exports = [
   {
     context: ['/fineract-provider'],
-    target: 'http://localhost:8443',
+    target: 'https://52.207.60.240:8443/fineract-provider',
     pathRewrite: { '^/fineract-provider': '' },
     changeOrigin: true,
     secure: false,

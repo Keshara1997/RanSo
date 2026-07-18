@@ -8,7 +8,7 @@
 @if (variant === 'compact') {
   <!-- Compact mode for Login -->
   <div class="footer-compact">
-    @if (displayBackEndInfo) {
+    <!-- @if (displayBackEndInfo) {
       <div class="footer-info">
         <span class="info-item">
           <span class="info-label">{{ 'APP_NAME' | translate }}</span>
@@ -25,12 +25,12 @@
           <span class="info-value">{{ server }}</span>
         </span>
       </div>
-    }
+    } -->
   </div>
 } @else {
   <!-- Default mode for Shell -->
   @if (displayBackEndInfo) {
-    <div class="layout-column m-b-20 f12" ngClass="{{ styleClass }}" id="footer">
+    <!-- <div class="layout-column m-b-20 f12" ngClass="{{ styleClass }}" id="footer">
       <div class="layout-column m-t-10 m-b-10 content-wrapper footer-center">
         <table class="versions">
           <tr>
@@ -79,6 +79,6 @@
           }
         </table>
       </div>
-    </div>
+    </div> -->
   }
 }

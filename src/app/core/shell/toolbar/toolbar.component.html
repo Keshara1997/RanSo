@@ -100,21 +100,6 @@
     <mifosx-search-tool tabindex="0"></mifosx-search-tool>
   </div>
 
-  <div #languageSelector class="white-text-language">
-    <mifosx-language-selector class="ml-1 language hide-lt-md" tabindex="0"></mifosx-language-selector>
-  </div>
-
-  <button
-    mat-icon-button
-    [matMenuTriggerFor]="languageMenu"
-    class="show-lt-md"
-    tabindex="0"
-    [attr.aria-label]="'labels.menus.Language Selector' | translate"
-    matTooltip="{{ 'labels.menus.Language Selector' | translate }}"
-  >
-    <mat-icon>language</mat-icon>
-  </button>
-
   <div #notifications>
     <mifosx-notifications-tray #notificationsTray class="hide-lt-md" tabindex="0"></mifosx-notifications-tray>
   </div>
@@ -129,11 +114,6 @@
     </button>
   </div>
 </mat-toolbar>
-
-<!-- Language selector menu for small screen view -->
-<mat-menu #languageMenu="matMenu">
-  <mifosx-language-selector class="ml-1 language"></mifosx-language-selector>
-</mat-menu>
 
 <mat-menu #institutionMenu="matMenu" [overlapTrigger]="false">
   <button mat-menu-item routerLink="/clients" tabindex="0" *mifosxHasPermission="'READ_CLIENT'">
@@ -358,30 +338,6 @@
     <button
       mat-raised-button
       color="primary"
-      (click)="popover.close(); showPopover(templateLanguageSelector, languageSelector)"
-    >
-      {{ 'labels.buttons.Next' | translate }}
-    </button>
-  </div>
-</ng-template>
-
-<ng-template #templateLanguageSelector let-popover="popover">
-  <h2>{{ 'labels.menus.Language Selector' | translate }}</h2>
-  <p class="mw300">{{ 'labels.text.Organization available languages' | translate }}</p>
-  <div class="layout-row align-end gap-2px responsive-column">
-    <button mat-raised-button color="warn" (click)="popover.close(); configurationWizardService.closeConfigWizard()">
-      {{ 'labels.buttons.Close' | translate }}
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="popover.close(); showPopover(templateGlobalSearch, globalSearch)"
-    >
-      {{ 'labels.buttons.Back' | translate }}
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
       (click)="popover.close(); showPopover(templateNotifications, notifications)"
     >
       {{ 'labels.buttons.Next' | translate }}
@@ -399,7 +355,7 @@
     <button
       mat-raised-button
       color="primary"
-      (click)="popover.close(); showPopover(templateLanguageSelector, languageSelector)"
+      (click)="popover.close(); showPopover(templateGlobalSearch, globalSearch)"
     >
       {{ 'labels.buttons.Back' | translate }}
     </button>

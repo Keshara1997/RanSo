@@ -33,7 +33,6 @@ import { TranslateService } from '@ngx-translate/core';
 /** Environment Imports */
 import { environment } from '../../environments/environment';
 import { SettingsService } from 'app/settings/settings.service';
-import { LanguageSelectorComponent } from '../shared/language-selector/language-selector.component';
 import { ThemeToggleComponent } from '../shared/theme-toggle/theme-toggle.component';
 import { ServerSelectorComponent } from '../shared/server-selector/server-selector.component';
 import { TenantSelectorComponent } from '../shared/tenant-selector/tenant-selector.component';
@@ -56,7 +55,6 @@ import { VersionService } from '../system/version.service';
   styleUrls: ['./login.component.scss'],
   imports: [
     ...STANDALONE_SHARED_IMPORTS,
-    LanguageSelectorComponent,
     ThemeToggleComponent,
     ServerSelectorComponent,
     TenantSelectorComponent,
