@@ -1,44 +1,43 @@
 ###############
 ### STAGE 1: Build app
 ###############
-ARG BUILDER_IMAGE=node:24-alpine3.23
-ARG NGINX_IMAGE=nginx:1.31.1-alpine3.23-slim
+ARG BUILDER_IMAGE=node:20-alpine
+ARG NGINX_IMAGE=nginx:1.19.3
 
 FROM $BUILDER_IMAGE AS builder
 ARG NPM_REGISTRY_URL=https://registry.npmjs.org/
 ARG BUILD_ENVIRONMENT_OPTIONS="--configuration production"
-ARG PUPPETEER_DOWNLOAD_HOST_ARG=https://storage.googleapis.com
-ARG PUPPETEER_CHROMIUM_REVISION_ARG=1011831
-ARG PUPPETEER_SKIP_DOWNLOAD_ARG
 
-# REDUCED: Use 512MB or 1024MB instead of 4GB
+# Keep low for small EC2 instances (t3.micro)
 ENV NODE_OPTIONS="--max-old-space-size=512"
 
 RUN apk add --no-cache git
 
 WORKDIR /usr/src/app
-
 ENV PATH=/usr/src/app/node_modules/.bin:$PATH
 
-# Export Puppeteer env variables for installation with non-default registry.
-ENV PUPPETEER_DOWNLOAD_HOST=$PUPPETEER_DOWNLOAD_HOST_ARG
-ENV PUPPETEER_CHROMIUM_REVISION=$PUPPETEER_CHROMIUM_REVISION_ARG
-ENV PUPPETEER_SKIP_DOWNLOAD=$PUPPETEER_SKIP_DOWNLOAD_ARG
+# Skip heavy browser downloads during install
+ENV PUPPETEER_SKIP_DOWNLOAD=1
 ENV CYPRESS_INSTALL_BINARY=0
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
+# Copy lockfiles first (better layer caching)
+COPY package*.json ./
+COPY angular.json ./
+COPY tsconfig*.json ./
+
+RUN npm cache clean --force && \
+    npm config set registry $NPM_REGISTRY_URL --location=global && \
+    npm ci --no-audit --no-fund --no-progress
+
+# Copy app source
 COPY ./ /usr/src/app/
 
-RUN npm cache clear --force
-
-RUN npm config set fetch-retry-maxtimeout 120000
-RUN npm config set registry $NPM_REGISTRY_URL --location=global
-
-# Use --max-old-space-size from npm too
-RUN node --max-old-space-size=512 ./node_modules/.bin/ng build --output-path=/dist $BUILD_ENVIRONMENT_OPTIONS
+# Build Angular app
+RUN npx ng build --output-path=/dist $BUILD_ENVIRONMENT_OPTIONS
 
 ###############
-### STAGE 2: Serve app with nginx ###
+### STAGE 2: Serve with nginx
 ###############
 FROM $NGINX_IMAGE
 
@@ -46,5 +45,4 @@ COPY --from=builder /dist/browser /usr/share/nginx/html
 
 EXPOSE 80
 
-# When the container starts, replace the env.js with values from environment variables
-CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
+CMD ["/bin/sh", "-c", "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
