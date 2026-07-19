@@ -11,8 +11,8 @@ ARG PUPPETEER_DOWNLOAD_HOST_ARG=https://storage.googleapis.com
 ARG PUPPETEER_CHROMIUM_REVISION_ARG=1011831
 ARG PUPPETEER_SKIP_DOWNLOAD_ARG
 
-# Set the environment variable to increase Node.js memory limit
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+# REDUCED: Use 512MB or 1024MB instead of 4GB
+ENV NODE_OPTIONS="--max-old-space-size=512"
 
 RUN apk add --no-cache git
 
@@ -34,9 +34,8 @@ RUN npm cache clear --force
 RUN npm config set fetch-retry-maxtimeout 120000
 RUN npm config set registry $NPM_REGISTRY_URL --location=global
 
-RUN npm ci
-
-RUN sh -c "ng build --output-path=/dist $BUILD_ENVIRONMENT_OPTIONS"
+# Use --max-old-space-size from npm too
+RUN node --max-old-space-size=512 ./node_modules/.bin/ng build --output-path=/dist $BUILD_ENVIRONMENT_OPTIONS
 
 ###############
 ### STAGE 2: Serve app with nginx ###
